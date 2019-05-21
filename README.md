@@ -49,8 +49,7 @@ We shall create four functions, one for each arithmatic operation which will per
 ```python
 # Function to add two numbers 
 def add(num1, num2):
-    #Perform the calculation
-    return None
+    return num1 + num2
 ```
 
 
@@ -58,7 +57,7 @@ def add(num1, num2):
 # Function to subtract two numbers 
 def subtract(num1, num2):
     #Perform the calculation
-    return None
+    return num1 - num2
 ```
 
 
@@ -66,7 +65,7 @@ def subtract(num1, num2):
 # Function to multiply two numbers
 def multiply(num1, num2):
     #Perform the calculation
-    return None
+    return num1 * num2
 ```
 
 
@@ -74,7 +73,7 @@ def multiply(num1, num2):
 # Function to divide two numbers
 def divide(num1, num2):
     #Perform the calculation
-    return None
+    return num1 / num2
 ```
 
 ### Create a Command-line User Interface
@@ -82,16 +81,44 @@ We shall now write the main program body to take user input and call the releven
 
 
 ```python
-# Print user menu 
-
+# Print user menu
+print("""Please select operation -
+1. Add
+2. Subtract
+3. Multiply
+4. Divide""")
 
 # Take input from the user for operation , followed by numbers. 
-
-
+output = 0
+symbol = ''
+operation = input("""Select operations form 1, 2, 3, 4 : """)
+operation = int(operation)
 # Based on operation, pass the two numbers to respective function
-# Print the output in a nice manner
+num1 = input("Enter first number:")
+num2 = input("Enter second number:")
+num1 = int(num1)
+num2 = int(num2)
 # Print "Invalid input" if an unexpected character is seen in input
+if type(num1) or type(num1) or type(operation) is not int:
+    print("invalid input")
 
+if operation == 1:
+    output = add(num1, num2)
+    symbol = '+'
+elif operation == 2:
+    output = subtract(num1, num2)
+    symbol = '-'
+elif operation == 3:
+    output = multiply(num1, num2)
+    symbol = '*'
+elif operation == 4:
+    output = divide(num1, num2)
+    symbol = '/'
+else:
+    print('invalid input')
+
+# Print the output in a nice manner
+print(num1, symbol, num2, "=", output)
 
 # Expected output    
 
@@ -112,11 +139,11 @@ We shall now write the main program body to take user input and call the releven
     2. Subtract
     3. Multiply
     4. Divide
-    
-    Select operations form 1, 2, 3, 4 :1
-    Enter first number: 2
-    Enter second number: 3
-    2 + 3 = 5
+    Select operations form 1, 2, 3, 4 : 1
+    Enter first number:2
+    Enter second number:5
+    invalid input
+    2 + 5 = 7
 
 
 ## Bring in the While loop
@@ -149,14 +176,60 @@ Let's work towards implementing iteration into the equation and enclose above I/
 
 ```python
 # Initialize the code with cont (continue) flag set to yes (y)
-
+flag = 'y'
 
 # Check for user input after each iteration of the code in a while loop
 
+while flag == 'y':
+    # Enclose the I/O  code block inside the while loop
+    # Print user menu
+    print("""Please select operation -
+    1. Add
+    2. Subtract
+    3. Multiply
+    4. Divide""")
 
-        # Enclose the I/O  code block inside the while loop
+    # Take input from the user for operation , followed by numbers. 
+    output = 0
+    symbol = ''
+    operation = input("""Select operations form 1, 2, 3, 4 : """)
+    operation = int(operation)
+    num1 = input("Enter first number:")
+    num2 = input("Enter second number:")
+    num1 = int(num1)
+    num2 = int(num2)
+   
+    # Print "Invalid input" if an unexpected character is seen in input
+    if isinstance(num1, int) == False or isinstance(num2, int) == False or isinstance(operation, int) == False:
+        print("invalid input22222")
+    
+    # Based on operation, pass the two numbers to respective function
+    if operation == 1:
+        output = add(num1, num2)
+        symbol = '+'
         
+    elif operation == 2:
+        output = subtract(num1, num2)
+        symbol = '-'
+        
+    elif operation == 3:
+        output = multiply(num1, num2)
+        symbol = '*'
+        
+    elif operation == 4:
+        div_type = input("Press d for division and m for modulo operator: ")
+        if div_type == 'd':
+            output = divide(num1, num2)
+            symbol = '/'
+        if div_type == 'm':
+            output = divide_v2(num1, num2)
+            symbol = '%'
+    else:
+        print('invalid input')
 
+    # Print the output in a nice manner
+    print(num1, symbol, num2, "=", output)
+    flag = input("Continue? y/n:")
 
 #Expected output format
 
@@ -173,6 +246,30 @@ Let's work towards implementing iteration into the equation and enclose above I/
 # 5 / 4 = 1.25
 ```
 
+    Please select operation -
+        1. Add
+        2. Subtract
+        3. Multiply
+        4. Divide
+    Select operations form 1, 2, 3, 4 : 5
+    Enter first number:5
+    Enter second number:4
+    invalid input
+    5  4 = 0
+    Continue? y/n:y
+    Please select operation -
+        1. Add
+        2. Subtract
+        3. Multiply
+        4. Divide
+    Select operations form 1, 2, 3, 4 : 4
+    Enter first number:5
+    Enter second number:4
+    Press d for division and m for modulo operator: d
+    5 / 4 = 1.25
+    Continue? y/n:n
+
+
 ## Level up (Optional)
 
 The while loop shown above allows the iteration through the code until a specific input from user i.e. `n` is noticed. Let's add some more functionality to this code by asking users about the type of division they are interested in, and this could be either normal division (as before) or a modulo operator (shows remainder).
@@ -183,7 +280,7 @@ The while loop shown above allows the iteration through the code until a specifi
 ```python
 def divide_v2(num1, num2):
     #Perform the calculation
-    return None
+    return num1 % num2
 
 ```
 
